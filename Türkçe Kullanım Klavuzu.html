@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UWA Request - Kullanım Kılavuzu</title>
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --accent-color: #3498db;
+            --bg-color: #f9f9f9;
+            --text-color: #333;
+            --border-color: #ddd;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--bg-color);
+            margin: 0;
+            display: flex;
+        }
+        nav {
+            width: 280px;
+            background-color: #fff;
+            height: 100vh;
+            position: fixed;
+            left: 0;
+            top: 0;
+            overflow-y: auto;
+            border-right: 1px solid var(--border-color);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.05);
+        }
+        nav h1 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin-bottom: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--text-color);
+            display: block;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #eef2f7;
+            color: var(--accent-color);
+        }
+        main {
+            margin-left: 320px;
+            padding: 40px;
+            max-width: 900px;
+            flex: 1;
+        }
+        section {
+            background: #fff;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
+        }
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        h3 {
+            color: var(--accent-color);
+            margin-top: 25px;
+        }
+        .param-list {
+            margin-top: 15px;
+        }
+        .param-item {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px dashed #eee;
+        }
+        .param-item:last-child {
+            border-bottom: none;
+        }
+        .param-name {
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.05rem;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .param-desc {
+            color: #555;
+            font-size: 0.95rem;
+        }
+        .note {
+            background-color: #fff8e1;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        code {
+            background-color: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: Consolas, monospace;
+            color: #e74c3c;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <h1>UWA Dokümantasyonu</h1>
+        <ul>
+            <li><a href="#dashboard">Dashboard (Genel Bakış)</a></li>
+            <li><a href="#task-management">Görev Yönetimi</a></li>
+            <li><a href="#proxy-manager">Proxy Yöneticisi</a></li>
+            <li><a href="#settings">Ayarlar</a></li>
+            <li><a href="#modules">Modüller</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="color: var(--primary-color);">UWA Request</h1>
+            <p>Kullanım kılavuzu.</p>
+        </div>
+
+        <section id="dashboard">
+            <h2>Dashboard (Genel Bakış)</h2>
+            <p>Uygulama açıldığında sizi karşılayan ana ekrandır. Burada mevcut görevlerinizin özetini, anlık durumlarını ve ilerlemelerini takip edebilirsiniz.</p>
+            
+            <h3>Özellikler</h3>
+            <ul>
+                <li><strong>Görev Listesi:</strong> Oluşturduğunuz tüm görevler kartlar halinde listelenir.</li>
+                <li><strong>Durum Göstergeleri:</strong> Her görevin durumu (Ready, Running, Completed, Error) renkli etiketlerle gösterilir.</li>
+                <li><strong>İlerleme Çubuğu:</strong> Görevin ne kadarının tamamlandığını görsel olarak ifade eder.</li>
+                <li><strong>Hızlı Aksiyonlar:</strong> Görevleri doğrudan bu ekrandan durdurabilir (Pause) veya devam ettirebilirsiniz (Resume).</li>
+            </ul>
+        </section>
+
+        <section id="task-management">
+            <h2>Görev Yönetimi (Tasks)</h2>
+            <p>Yeni otomasyon görevleri oluşturduğunuz ve mevcutları düzenlediğiniz en kapsamlı bölümdür. <strong>"+ Add Task"</strong> butonu ile yeni bir görev formu açabilirsiniz.</p>
+
+            <h3>Form Alanları ve Detayları</h3>
+            
+            <div class="param-list">
+                <div class="param-item">
+                    <span class="param-name">Task Name (Görev Adı)</span>
+                    <span class="param-desc">Görevi tanımlamanız için vereceğiniz isimdir. Listelerde bu isimle görünür (Örn: "Günlük SEO Trafiği").</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Target URL (Hedef Adres)</span>
+                    <span class="param-desc">Otomasyonun gerçekleştirileceği ana web sitesi adresi. (Örn: <code>https://ornek-site.com</code>).</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Navigator Type (Erişim Yöntemi)</span>
+                    <span class="param-desc">Hedef siteye nasıl ulaşılacağını belirler.
+                        <ul>
+                            <li><strong>Direct URL:</strong> Adrese doğrudan gider.</li>
+                             <li><strong>Google Search Fake:</strong> Adrese Google Arama sonucundan gelmiş gibi gider, ancak gerçekten Google Arama sonucu üzüerinden gitmez, hedef URL'nin herhangi bir arama sonucunda var olmasına da gerek yoktur. Bu Analytics manüpülasyonu içindir, Analytics bu modül ile gönderilen ziyaretlerin çok büyük bir bölümünü "Organik Search" olarak tanımlar.</li>
+                             <li><strong>Google Search Direct:</strong> Adrese doğrudan hedef URL'nin bulunduğu Google Arama Sonucu sayfasından gider. Yani bu modülde hedef URL'nin bulunduğu SERP URL'yi belirtmeniz gerekir. Modül direkt bu URL'den göreve başlayarak arama sonucuna tıklama işlemi yapar. Tıklamalar Google Search Console'a yansır. SERP MANİPÜLASYONU AMACIYLA KULLANIMDA EN VERİMLİ NAVİGATOR MODÜLÜ budur. Çünkü Google Search modülü gibi uzun bir sürece sahip değildir ve birim zamanda maksimum Google tıklamasını yaparak avantaj sağlar.</li>
+                            <li><strong>Google Search:</strong> Google üzerinde arama yaparak siteyi bulur ve tıklar. Google Search Console'a yansır tıklamalar, ancak Google'da sırlama yükseltmek amacı ile kullanımda "Google Search Direct'e göre bir avantajı olduğuna dair bir deneyim ve bilgi yoktur, aksine süreci uzatarak birim zamanda arama sonucuna tıklayan ziyaretçi sayısını azaltacağı için Google Search Direct'e göre daha verimsizdir.</li>
+                            <li><strong>Referrer Spoof Navigation:</strong> Hedef URL'ye referer bilgisi ile erişir. (Örn: "https://www.facebook.com/"). Analytics manipülasyonu içindir, gerçekten referer siteye gitmez, ama Analytics gibi trafik analizcilerine referer siteden bu siteye geldiğini söyler.</li>
+                        </ul>
+                    </span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Mission Type (Görev Tipi)</span>
+                    <span class="param-desc">Siteye ulaştıktan sonra ne yapılacağını belirler.
+                        <ul>
+                            <li><strong>Just Visit:</strong> 
+                                </br>İşlev: Sayfayı açar, kaynakları (resim/css) yükler ve organik bir ziyaretçi gibi görünmek için fare hareketleri simülasyonu yapar.
+                                </br>Bekleme Süresi: Sayfa yüklendikten sonra 3 ile 8 saniye arasında rastgele bir süre geçirir.
+                                </br>Ortalama Toplam Süre: Sayfa yüklenme süresi + ~5.5 saniye.</li>
+                            <li><strong>Surfing (Simple):</strong> 
+                                </br>İşlev: Sayfada dinamik bir döngü içerisinde rastgele Scroll (Kaydırma), Engage (Fare/Odaklanma) ve Idle (Bekleme) işlemleri yapar.
+                                </br>Süre Hedefi: Kod içerisinde toplam süre hedefi 10 ile 20 saniye arasında rastgele belirlenir.
+                                </br>Ortalama Toplam Süre: Sayfa yüklenme süresi + ~15 saniye.</li>
+                            <li><strong>Surfing (Advanced):</strong>
+                                </br>İşlev: Çok daha karmaşık ve insansı davranışlar içeren 9 adımlı bir senaryo izler: Bekleme & Titreme (Jitter), Başlıklara/Yazılara Odaklanma, Tekrar Bekleme, Kaydırma, Tekrar Odaklanma, Varsa Form Elemanlarına Odaklanma, Kaydırma ve Titreme Kombinasyonu, Site İçi Link Tıklama (Navigasyon), Yeni Sayfada Kaydırma ve Bekleme
+                                </br>Süre: Tüm bu adımların toplamı (navigasyon ve yüklemeler hariç) yaklaşık 40-60 saniye sürmektedir.
+                                </br>Ortalama Toplam Süre: Sayfa yüklenme süreleri + ~50 saniye.</li>
+                            <li><strong>Cookie Generator:</strong> 
+                                </br>İşlev: Sadece çerez toplamak amacıyla, aynı domain içerisindeki rastgele linklere tıklar ve gezinir.
+                                </br>Sayfa Sayısı (Adım): 8 ile 12 arasında rastgele sayıda sayfa gezer (Ortalama 10 sayfa).
+                                </br>Ortalama Toplam Süre: (10 Sayfa x Yükleme Süresi) + (10 Sayfa x ~3.5 Saniye Bekleme) = 35 saniye + Toplam Yükleme Süreleri.
+                                </br>Not: Bu modül ile export edilecek çerezler Google Search ve Google Search Direct'in başarısı için yeterli değildir (SERP manipülasyonu amacıyla kullanılan bu iki modül sadece gerçek bir tarayıcıdan alınmış çerezler ile başarılı olabilir), belki Youtube, Twitter gibi çeşitli platformlarda kullanılabilir.</li>
+                        </ul>
+                    </span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Select Proxy (Proxy Seçimi)</span>
+                    <span class="param-desc">Bağlantının hangi IP adresi üzerinden yapılacağını belirler.
+                        <ul>
+                            <li><strong>Without Proxy:</strong> Kendi IP adresinizi kullanır (Önerilmez).</li>
+                            <li><strong>Any (All):</strong> Kayıtlı tüm proxy'lerden rastgele birini seçer.</li>
+                            <li><strong>Any (Singles):</strong> Belirli bir gruba dahil olmayan proxy'lerden rastgele seçim yapar.</li>
+                            <li><strong>Group:</strong> Seçilen grubun içindeki tüm proxy'lerden rastgele seçim yapar.</li>
+                            <li><strong>Tekil:</strong> Tek bir proxy seçer. Rotating proxy kullanılacaksa, tek bir proxy olarak eklenip, tekil olarak bu proxy seçilmelidir.</li>
+                        </ul>
+                    </span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Accept Language (Dil Ayarı)</span>
+                    <span class="param-desc">Tarayıcının siteye bildireceği dil tercihi. Varsayılan olarak Türkçe birinci dil ve İngilizce ikinci dil olarak ayarlıdır (<code>tr-TR,tr;q=0.9...</code>). Hedef lokasyon ve lokasyona ait dile göre değiştirebilirsiniz.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Cookies Import / Export (Çerez Yönetimi)</span>
+                    <span class="param-desc">
+                        <ul>
+                            <li><strong>Import:</strong> Daha önce kaydedilmiş çerezleri (cookie) yükleyerek tarayıcı geçmişi ile internette gezinir. Bir klasör seçmeniz gerekir.</li>
+                            <li><strong>Export:</strong> İşlem bittikten sonra oluşan çerezleri dosyaya kaydeder. Export için Import zorunlu değildir, ancak bir taskta hem import hem export aynı anda seçerseniz import ettiğiniz çerezleriniz güncellenir, ömrü uzar ve etkisi artar.</li>
+                            <li><strong>Restore on Failure:</strong> Kullanılan cookies dosyaları import klasörü olarak belirttiğiniz klasörün içinde otomatik olarak oluşturulacak processed isimli klasöre taşınır. Böylece aynı taskta aynı cookies dosyasını birden fazla oturum kullanamaz. Ancak proxy sorunu vb. nedenlerle başarısız olan oturumlarda cookies israfını önlemek için “Restore Cookies on Failure” özelliğini aktif edebilirsiniz. Böylece başarısız oturumlar tarafından import edilen çerezler, yeniden import klasörüne, çerez import kuyruğunun en sonuna dahil edilecektir.</li>
+                        </ul>
+                    </span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Resource Optimization (Kaynak Optimizasyonu)</span>
+                    <span class="param-desc">Aktif edildiğinde, gereksiz kaynakların (resimler, fontlar, reklam scriptleri vb.) yüklenmesini engelleyerek işlemi hızlandırır ve bant genişliği tasarrufu sağlar. Engellenecek türleri özelleştirebilirsiniz. Exception List'e domain:resource formatında ekleyecekleriniz engelleme şartlarından izin verdikleriniz ölçüsünde muah olur. Bir domaine ait tüm resource tiplerini engelleme listesinin dışında bırakmak için <b>domain.com:all</b> şeklinde Exception List'e ekleyin. Eğer sadece sctiplerin çalışmasını istiyorsanız <b>domain.com:script</b> şeklinde ekleyin. Ya da <b>domain.com:script,fetch</b> formatıyla birden fazla resource tipine de izin verebilirsiniz. </span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Target Sessions (Hedef Oturum Sayısı)</span>
+                    <span class="param-desc">Bu görevin <strong>başarıyla</strong> tamamlanması gereken toplam işlem sayısıdır. Örneğin "100" girerseniz, sistem 100 başarılı ziyaret yapana kadar çalışır.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Time (Hours) (Süre / Saat)</span>
+                    <span class="param-desc"><strong>Önemli Özellik:</strong> İşlemin toplam kaç saate yayılacağını belirler. 
+                    <br>Örneğin: <strong>100 Oturum</strong> ve <strong>1 Saat</strong> girerseniz, sistem 100 oturumu hemen bitirmek yerine, bunları 1 saate homojen bir şekilde yayar (yaklaşık her 36 saniyede bir işlem).</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="proxy-manager">
+            <h2>Proxy Yöneticisi (Proxies)</h2>
+            <p>Otomasyon işlemlerinde kullanılacak IP adreslerini yönettiğiniz bölümdür. Proxy kullanmak, işlemlerin farklı kullanıcılardan geliyormuş gibi görünmesini sağlar ve engellenme riskini azaltır.</p>
+
+            <h3>Özellikler</h3>
+            <ul>
+                <li><strong>Add Proxy:</strong> Tek tek proxy eklemenizi sağlar. Format: <code>ip:port:user:pass</code> veya sadece <code>ip:port</code>.</li>
+                <li><strong>Bulk Add:</strong> Çok sayıda proxy'yi toplu olarak eklemenizi sağlar. Her satıra bir proxy gelecek şekilde yapıştırabilirsiniz.</li>
+                <li><strong>Gruplama:</strong> Proxy'leri kategorize edebilirsiniz (Örn: "Mobil Proxyler", "ABD Proxyler"). Görev oluştururken bu grupları seçebilirsiniz.</li>
+                <li><strong>Check (Kontrol):</strong> Eklenen proxy'lerin çalışıp çalışmadığını test edebilirsiniz. Çalışmayanlar otomatik olarak pasif duruma getirilir.</li>
+            </ul>
+        </section>
+
+        <section id="settings">
+            <h2>Ayarlar (Settings)</h2>
+            <p>Uygulamanın genel davranışını etkileyen global ayarların bulunduğu bölümdür.</p>
+
+            <div class="param-list">
+                <div class="param-item">
+                    <span class="param-name">Max Concurrent Sessions (Maksimum Eşzamanlı Oturum)</span>
+                    <span class="param-desc">Bilgisayarınızda aynı anda kaç tarayıcı penceresinin (işlemin) çalışacağını belirler. Bilgisayarınızın performansına (RAM/CPU) göre ayarlamalısınız. Yüksek değerler sistemi yavaşlatabilir.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Max Consecutive Failures (Maksimum Ardışık Başarısızlık Sayısı)</span>
+                    <span class="param-desc">Bir görevde ardışık kaç başarısız oturumun ardından görevin durdurulacağını belirler. Örneğin "500" girerseniz, 500 ardışık başarısız oturumdan sonra görev durdurulur. Hedef sayfaya ulaşılamaması, proxy limitinin bitmesi gibi durumlarda sonsuza kadar çalışmayı engellemek için bu değeri ayarlamalısınız.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Max Retry Attempts (Tekrar Deneme Limitleri)</span>
+                    <span class="param-desc">Başarısız işlemlerin yeniden denenme sayısı (spesifik olarak kod içinde deneme sayısı belirtilmemiş mekanizmaları etkiler). Örneğin Google Arama Sonucu'nda hedef URL'ye tıklama eyleminde çeşitli nedenlerle başarısız olduğunda hata verip görevi sonlandırmak yerine, bu deneme sayısı kadar yeniden dener. Deneme sayısı bittiğinde işlemi sonlandırır ve başarısız olarak işaretler.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">License Management (Lisans Yönetimi)</span>
+                    <span class="param-desc">Lisans anahtarınızı girebileceğiniz, aktif lisansınızın durumunu ve bitiş tarihini görebileceğiniz alandır.</span>
+                </div>
+
+                <div class="param-item">
+                    <span class="param-name">Timeouts (Zaman aşımları)</span>
+                    <span class="param-desc">
+                        <ul>
+                            <li><strong>Request Timeout:</strong> Bir web isteğinin cevap vermesi için beklenecek maksimum süre.</li>
+                            <li><strong>JSRenderer Load Timeout:</strong> Sayfanın tamamen yüklenmesi için beklenecek süre.</li>
+                            <li><strong>Ping Timeout:</strong> Ping işlemi kullanan modüllerde ping işleminin tamamlanması için maksimum bekleme süresi.</li>
+                            <li><strong>Proxy Connection Timeout:</strong> Proxy bağlantı kontrolü süresi.</li>
+                            <li><strong>Base Delay:</strong> Engine düzeyinde, spesifik olarak bekleme süresi belirtilmemiş işlemlerde, işlemler arasında beklenecek süre. Örneğin "Max Retry Attempts" limiti gereğince başarısız işlemler için yapılan yeniden deneme işlemleri arasında "Base Delay" kadar beklenir.</li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <section id="modules">
+            <h2>Modüller (Modules)</h2>
+            <p>Sisteme yüklü olan yeteneklerin (Missions, Navigators) listelendiği alandır.</p>
+            
+            <div class="note">
+                <strong>Bilgi:</strong> "Extensions" (Eklentiler) bölümü, uygulamanın gelecekte kazanacağı yetenekler için hazırlanmış bir altyapıdır. Şu an için bu bölümde kullanıcı tarafından yapılacak bir işlem bulunmamaktadır.
+            </div>
+        </section>
+
+        <div class="footer">
+            &copy; 2026 UWA Request. Tüm hakları saklıdır.
+        </div>
+    </main>
+</body>
+</html>
